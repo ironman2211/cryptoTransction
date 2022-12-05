@@ -5,13 +5,12 @@ function App() {
 
   return (
 
+        <TransactionContextProvider>
     <div className="min-h-screen">
       <div className='gradient-bg-welcome'>
-        <TransactionContextProvider>
 
         <Navbar />
         <Welcome></Welcome>
-        </TransactionContextProvider>
 
       </div>
       <Services></Services>
@@ -19,6 +18,7 @@ function App() {
       <Footer></Footer>
 
     </div>
+        </TransactionContextProvider>
   )
 }
 

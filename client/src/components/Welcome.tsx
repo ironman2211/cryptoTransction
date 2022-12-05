@@ -4,6 +4,7 @@ import { BsInfoCircle } from "react-icons/bs"
 import { Loader } from "./Loader"
 import { useContext, useState } from "react"
 import { TransactionContext } from "../context/TransactionContext"
+import {ShortenAddress} from "../utils/ShortenAdd"
 interface WelcomeProps {
   type: string
   value: any
@@ -31,9 +32,11 @@ const Welcome = () => {
   const { connectWallet, currentAccount, handleChange, formData, sendTransaction } = useContext(TransactionContext)
   const handleClick = (e: any) => {
     e.preventDefault()
+    setIsLoading(true)
     const { addressTo, amount, keyword, message } = formData;
     if (!addressTo || !amount || !keyword || !message) return alert("Please fill all the fields");
     sendTransaction()
+    setIsLoading(false)
   }
   return (
     <div className="flex w-full justify-center items-center">
@@ -49,11 +52,18 @@ const Welcome = () => {
           <p className="text-left mt-5 text-white md:w-9/12 w-11/12 text-base font-light">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet, earum.
           </p>
-          <button
+          {
+            currentAccount?          <button
+          
+            type="submit"
+            className="text-RED flex items-center justify-center bg-[#e3e329]  mt-10 p-2 cursor-pointer  rounded-full">
+            Already Connected 😀 </button>:          <button
             onClick={connectWallet}
             type="submit"
             className="text-white flex items-center justify-center bg-[#2952e3]  mt-10 p-2 cursor-pointer hover:bg-[#2546bd] rounded-full">
             Connect Wallet</button>
+          }
+
         </div>
 
 
@@ -69,7 +79,7 @@ const Welcome = () => {
                 <BsInfoCircle className="text-white m-1 text-xl" />
               </div>
               <div>
-                <p className="text-white text-24">{currentAccount ? currentAccount : "Account"}</p>
+                <p className="text-white text-24">{currentAccount ? ShortenAddress(currentAccount) : "Account"}</p>
                 <p className="text-white text-24 font-semibold text-lg mt-1">Ethereum</p>
               </div>
             </div>
@@ -83,7 +93,7 @@ const Welcome = () => {
               <Input placeholder="Enter Message" type="text" value={formData.message} name="message" handleChange={handleChange} ></Input>
               <div className="h-[1px] w-full bg-gray-500 my-2" ></div>
               {
-                currentAccount ? <button className="w-full  bg-[#2952e3] cursor-pointer hover:bg-[#2546bd]  p-2 rounded-xl text-white " onClick={handleClick}>Send</button> : <Loader></Loader>
+                isLoading ? <Loader></Loader> : <button className="w-full  bg-[#2952e3] cursor-pointer hover:bg-[#2546bd]  p-2 rounded-xl text-white " onClick={handleClick}>Send</button> 
               }
             </div>
           </div>
