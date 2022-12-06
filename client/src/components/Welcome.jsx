@@ -5,15 +5,9 @@ import { Loader } from "./Loader"
 import { useContext, useState } from "react"
 import { TransactionContext } from "../context/TransactionContext"
 import {ShortenAddress} from "../utils/ShortenAdd"
-interface WelcomeProps {
-  type: string
-  value: any
-  name: string
-  placeholder: string
-  handleChange: (event: React.ChangeEvent<HTMLInputElement>) => void
-}
 
-const Input = ({ type, placeholder, name, value, handleChange }: WelcomeProps) => {
+
+const Input = ({ type, placeholder, name, value, handleChange }) => {
   return (
     <input className="my-2 text-white rounded-sm padding-2 w-full outline-none p-2 m-1 bg-transparent  text-small white-glassmorphism border-none  "
       placeholder={placeholder}
@@ -30,7 +24,7 @@ const Input = ({ type, placeholder, name, value, handleChange }: WelcomeProps) =
 const Welcome = () => {
   const [isLoading, setIsLoading] = useState(false)
   const { connectWallet, currentAccount, handleChange, formData, sendTransaction } = useContext(TransactionContext)
-  const handleClick = (e: any) => {
+  const handleClick = (e) => {
     e.preventDefault()
     setIsLoading(true)
     const { addressTo, amount, keyword, message } = formData;
@@ -68,7 +62,7 @@ const Welcome = () => {
 
 
         <div className="flex flex-col flex-1 items-center justify-start w-full md:mt-0 mt-10">
-          <div className="flex items-end justify-end items-start  p-2 flex-col rounded-xl h-40 sm:w-72 w-full eth-card white-glassmorpism">
+          <div className="flex  justify-end items-start  p-2 flex-col rounded-xl h-40 sm:w-72 w-full eth-card white-glassmorpism">
             <div className="flex justify-between flex-col w-full h-full " >
               <div className="flex justify-between  items-start">
                 <div className="w-10 h-10 rounded-full border-2 border-white flex justify-center items-center">

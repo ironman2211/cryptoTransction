@@ -1,6 +1,5 @@
 import { useContext, useState } from "react"
-import { TransactionContext } from "../context/TransactionContext"
-import DummyData from "../utils/DummyData"
+import { TransactionContext } from "../context/TransactionContext.jsx"
 import { ShortenAddress } from "../utils/ShortenAdd"
 import useFetch from "../hooks/useFetch"
 const TransactionCard = ({ keyword, message, timestamp, addressFrom, addressTo, amount }) => {
@@ -42,7 +41,7 @@ const TransactionCard = ({ keyword, message, timestamp, addressFrom, addressTo, 
   )
 }
 const Transaction = () => {
-  const { currentAccount ,transactions} = useContext<any>(TransactionContext)
+  const { currentAccount ,transactions} = useContext(TransactionContext)
   return (
     <div className="flex w-full justify-center items-center 2xl:px-20 gradient-bg-transactions ">
       <div className="flex flex-1 items-center justify-center md:p-7 px-5 py-12 flex-col" >
