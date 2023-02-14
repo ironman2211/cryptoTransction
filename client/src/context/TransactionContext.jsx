@@ -25,7 +25,7 @@ export const TransactionContextProvider = ({ children }) => {
   const [transactions, setTransactions] = useState([]);
 
   const [loading, setLoading] = useState(false);
-  const [transactionCount, setTransactionCount] = useState(localStorage.getItem("transactionCount") || 0);
+  // const [transactionCount, setTransactionCount] = useState(localStorage.getItem("transactionCount") || 0);
   const [formData, setFormData] = useState({
     addressTo: "",
     amount: "",
